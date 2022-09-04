@@ -1,19 +1,19 @@
 def findSmallest(arr):
-    smallest = arr[0]
-    smallest_index = 0
-    for i in range(1, len(arr)):
-        if arr[i] < smallest:
-            smallest = arr[i]
-            smallest_index = i
-    return smallest_index
+    smallest = arr[0]  #接收下标为0的元素的值
+    smallest_index = 0  #保留判断后最小元素下标
+    for i in range(1, len(arr)):  #遍历从下标为一的元素
+        if arr[i] < smallest:  #判断列表arr的第一个元素小还是for遍历的第i个元素小
+            smallest = arr[i]  #取代最小元素
+            smallest_index = i  #取代最小元素下标
+    return smallest_index  #返回最小元素下标
 
 
 def selectionSort(arr):
-    newArr = []
-    for i in range(len(arr)):
-        smallest = findSmallest(arr)
-        newArr.append(arr.pop(smallest))
-    return newArr
+    newArr = []  #储存地址
+    for i in range(len(arr)):  #循环
+        smallest = findSmallest(arr)  #调用函数
+        newArr.append(arr.pop(smallest))  #将最小元素弹出并输入储存地址
+    return newArr  #输出排序后的列表
     
 
 print(selectionSort([5, 3, 6, 2, 10]))
