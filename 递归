@@ -1,0 +1,8 @@
+def num(i):  #此函数用于倒计
+    print(i)  #在此处打印目的在于每一次成功调用就输出一个值
+    if i<=1:
+        num(i-1)  #调用函数自身实现循环
+    else:
+        return  #返回值为None
+    
+print(num(5))
