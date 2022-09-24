@@ -1,0 +1,35 @@
+def search(nums, target):
+    low = 0
+    long = len(nums) - 1
+    while long >= low:
+        mid = (low + long) // 2
+        my_list = []
+        if nums[mid] == target:
+            guess2 = mid - 1
+            guess = mid
+            while True:
+                if len(nums) - 1 == guess:  # 关键：步骤1，放在步骤2上面
+                    my_list.insert(1, guess)
+                    break
+                if nums[guess + 1] == target and guess <= len(nums) - 1:  # 关键：步骤2，为了返回guess是上一次判断成立的，直接判断guess+1是否成立，加上and是为了防止guess超出最大索引
+                    guess += 1
+                else:
+                    my_list.insert(1, guess)
+                    break
+            while True:
+                if nums[guess2] == target and guess2 >= 0:
+                    guess2 -= 1
+                else:
+                    my_list.insert(0, guess2 + 1)
+                    break
+            return my_list
+        if nums[mid] < target:
+            low = mid + 1
+        if nums[mid] > target:
+            long = mid - 1
+    return [-1, -1]
+
+
+input_list = [14,14,14]
+
+print(search(input_list, 14))
