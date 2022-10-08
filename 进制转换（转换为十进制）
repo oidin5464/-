@@ -1,0 +1,68 @@
+第一个版本：（有误：18行：-3//2=-2，3//2=1）
+def conversion_systems(number, systems=2):
+    global a
+    result = ''
+
+    if number == 0:
+        return 0
+    elif number > 0:
+        a = ''
+    elif number < 0:
+        a = '-'
+
+    while number != 0:
+        if number == -1:
+            result = '1' + result
+            break
+        remainder = number % systems
+        number = number // 2
+        result = str(remainder) + result
+
+    return int(a + result)
+
+
+print(conversion_systems(-3))
+
+
+
+第二个版本：（绝对值版）
+def conversion_systems(number, systems=2):
+    global a
+    result = ''
+
+    if number == 0:
+        return 0
+    elif number > 0:
+        a = ''
+    elif number < 0:
+        a = '-'
+
+    while abs(number):  # abs()将值转换为绝对值
+        result = str(abs(number) % systems) + result
+        number = abs(number // 2)
+
+    return int(a + result)
+
+
+print(conversion_systems(-16))
+
+
+参照版：
+def ten_to_seven(num, k=2):
+    s = ""  # 记录余数
+
+    if num == 0:  # 先判断是否为0，如果为0，直接返回0
+        return 0
+    elif num > 0:  # 判断正负性，如果为正数，不记录
+        a = ''
+    else:  # 如果为负数，记录为负号
+        a = '-'
+
+    while abs(num):  # 当num为0时，循环结束
+        # 倒叙记录余数，注意，是倒叙记录
+        s, num = str(abs(num) % k) + s, abs(num) // k  # num整除除进制数
+
+    return int(a + s)  # 先将符号位和余数进行合并，再转换为int类型
+
+
+print(ten_to_seven(-3))
