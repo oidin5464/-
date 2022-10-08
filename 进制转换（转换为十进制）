@@ -1,4 +1,4 @@
-第一个版本：（有误：18行：-3//2=-2，3//2=1）
+第一版：（有误：18行：-3//2=-2，3//2=1）
 def conversion_systems(number, systems=2):
     global a
     result = ''
@@ -24,30 +24,29 @@ def conversion_systems(number, systems=2):
 print(conversion_systems(-3))
 
 
-
-第二个版本：（绝对值版）
+第二版：（绝对值版）
 def conversion_systems(number, systems=2):
-    global a
+    global a  # 将变量转换为全局变量
     result = ''
 
     if number == 0:
         return 0
-    elif number > 0:
+    elif number > 0:  # 判断正负并产生一个符号
         a = ''
-    elif number < 0:
+    elif number < 0:  # 配合下面的循环储存负号，将取绝对值后去掉的符号提前保留
         a = '-'
 
-    while abs(number):  # abs()将值转换为绝对值
-        result = str(abs(number) % systems) + result
-        number = abs(number // 2)
+    while abs(number):  # 将数值转换为自身的绝对值，因为绝对值中的数不能为负值故可判断当取整（result）为0时循环截止
+        result = str(abs(number) % systems) + result  # 取余并将结果添加到变量中
+        number = abs(number) // systems  # 运算向下取整，并冲置变量
 
-    return int(a + result)
-
-
-print(conversion_systems(-16))
+    return int(a + result)  # 返回结果，并将符号添加上
 
 
-参照版：
+print(conversion_systems(-2))  # 运行
+
+
+第三版（参照版）：
 def ten_to_seven(num, k=2):
     s = ""  # 记录余数
 
