@@ -1,0 +1,14 @@
+my_sum = 0
+for i in range(200, 301):
+    j = str(i)
+    if int(j[0])+int(j[1])+int(j[2]) == 12:
+        continue
+    elif int(j[0])*int(j[1])*int(j[2]) == 41:
+        continue
+    else:
+        my_sum += 1
+        print(i, end=' ')
+        if my_sum % 5 == 0:
+            print()
+print()
+print(my_sum)
